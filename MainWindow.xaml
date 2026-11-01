@@ -1,0 +1,69 @@
+﻿ <!--Project: Assessment Tracker
+     Cameron Kew
+     30118752
+     C#One
+     AT2.3
+     File: MainWindow.xaml
+ 
+     Description:
+     Defines the visual layout of the login screen.-->
+
+<Window x:Class="_30118752_AT2._3_GUI1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_30118752_AT2._3_GUI1"
+        mc:Ignorable="d"
+        Title="Assessment Tracker - Login" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+    
+    <Grid Background="#F2F4F7">
+        <Border Width="360"
+                Padding="30"
+                Background="White"
+                CornerRadius="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Assessment Tracker"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30"/>
+
+                <TextBlock Text="Username:"
+                           FontSize="14"
+                           Margin="0,0,0,5"/>
+
+                <TextBox x:Name="txtUsername"
+                         Height="35"
+                         Padding="8"
+                         Margin="0,0,0,18"/>
+
+                <TextBlock Text="Password:"
+                           FontSize="14"
+                           Margin="0,0,0,5"/>
+
+                <PasswordBox x:Name="txtPassword"
+                             Height="35"
+                             Padding="8"
+                             Margin="0,0,0,25"/>
+
+                <Button x:Name="btnLogin"
+                        Content="Login"
+                        Height="40"
+                        FontSize="15"
+                        FontWeight="SemiBold"
+                        Background="#2457A7"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Click="btnLogin_Click"/>
+                
+            </StackPanel>
+            
+        </Border>
+
+    </Grid>
+</Window>

@@ -1,0 +1,165 @@
+﻿ <!--Project: Assessment Tracker
+     Cameron Kew
+     30118752
+     C#One
+     AT2.3
+     File: DeleteAssessmentWindow.xaml
+ 
+     Description:
+     Defines the table and buttons used to delete assessments.-->
+
+<Window x:Class="_30118752_AT2._3_GUI1.DeleteAssessmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_30118752_AT2._3_GUI1"
+        mc:Ignorable="d"
+        Title="Delete Assessment" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <Style x:Key="RoundedBlueButton" TargetType="Button">
+            <Setter Property="Background" Value="#2457A7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <!-- Create rounded corners and button effects -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                    Background="{TemplateBinding Background}"
+                    CornerRadius="10"
+                    Padding="8">
+
+                            <ContentPresenter
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Change the colour when the button is used -->
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder"
+                            Property="Background"
+                            Value="#3478D4"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder"
+                            Property="Background"
+                            Value="#193D75"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ButtonBorder"
+                            Property="Opacity"
+                            Value="0.5"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="#F2F4F7" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Page Title -->
+        <TextBlock Grid.Row="0"
+                   Text="Delete Assessment"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Foreground="Black"
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,12"/>
+        
+        <!-- Instructions for page use -->
+        <TextBlock Grid.Row="1"
+                   Text="Select an assessment from the table, then choose Delete"
+                   FontSize="13"
+                   Foreground="#606A78"
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   Margin="0,0,0,18"/>
+        
+        <!-- Assessment Table Card -->
+        <Border Grid.Row="2"
+                Background="White"
+                CornerRadius="14"
+                Padding="18"
+                Margin="15,0">
+
+            <DataGrid x:Name="dgvAssessments"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="Horizontal"
+                      BorderThickness="1"
+                      BorderBrush="#E1E5EB"
+                      Background="White"
+                      RowBackground="White"
+                      AlternatingRowBackground="#F7F9FC"
+                      FontSize="13">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Unit / Cluster"
+                                        Binding="{Binding UnitName}"
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Assessment"
+                                        Binding="{Binding AssessmentName}"
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Type"
+                                        Binding="{Binding AssessmentType}"
+                                        Width="1.3*"/>
+
+                    <DataGridTextColumn Header="Due Date"
+                                        Binding="{Binding DueDate, StringFormat={}{0:dd-MM-yyy}}"
+                                        Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,18,0,5">
+
+            <Button x:Name="btnDeleteAssessment"
+                    Content="Delete Selected"
+                    Width="150"
+                    Height="42"
+                    Margin="0,0,12,0"
+                    Style="{StaticResource RoundedBlueButton}"
+                    Click="btnDeleteAssessment_Click"/>
+
+            <Button x:Name="btnReturnToMenu"
+                    Content="Return to Menu"
+                    Width="140"
+                    Height="42"
+                    Style="{StaticResource RoundedBlueButton}"
+                    Click="btnReturnToMenu_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
