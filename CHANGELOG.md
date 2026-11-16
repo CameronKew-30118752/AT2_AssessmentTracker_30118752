@@ -18,3 +18,5 @@ All changes to the Assessment Tracker project will be recorded here.
 * Added a README and Git ignore rules. 
 * Added CHANGELOG
 
+## VCS Merge Test 
+* Added a local change for AT2.3 Merge Testing
