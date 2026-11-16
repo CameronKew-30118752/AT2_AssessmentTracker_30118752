@@ -94,4 +94,30 @@ public class AssessmentManager
             }
         }
     }
+
+    /// <summary>
+    /// Searchers for an assessment by checking each assessment individually 
+    /// </summary>
+    /// <param name="assessmentName"> The name of the assessment being searched for </param>
+    /// <returns> The matching assessment, or null if it cannot be found </returns>
+    public Assessment? SequentialSearch(string assessmentName)
+    {
+        // Loop through each assessment in the collection 
+        foreach (Assessment assessment in Assessments)
+        {
+            // Compare the current assessment name with the search name
+            // Ignore differences between uppercase and lowercase letters
+            if (string.Equals(
+                assessment.AssessmentName,
+                assessmentName,
+                StringComparison.OrdinalIgnoreCase))
+            {
+                // Return the assessment if match is found
+                return assessment;
+            }
+        }
+
+        // Return null if no matching assessment was found 
+        return null;
+    }
 }

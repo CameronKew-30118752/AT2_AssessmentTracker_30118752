@@ -22,6 +22,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace _30118752_AT2._3_GUI1
 {
@@ -45,6 +46,51 @@ namespace _30118752_AT2._3_GUI1
             assessmentManager = manager;
 
             // Display the assessments in the DataGrid
+            dgvAssessments.ItemsSource = assessmentManager.Assessments;
+        }
+
+        /// <summary>
+        /// Searches for an assessment using sequential search
+        /// </summary>
+        private void btnSearchAssessment_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the assessment name entered by user
+            string searchName = txtSearchAssessment.Text.Trim();
+
+            // Check that search box is not empty
+            if (String.IsNullOrWhiteSpace(searchName))
+            {
+                MessageBox.Show("Please enter an assessment name to search for");
+                return;
+            }
+
+            // Search the assessment collection using sequential search
+            Assessment? foundAssessment = assessmentManager.SequentialSearch(searchName);
+
+            // Check whether the assessment was found
+            if (foundAssessment != null)
+            {
+                // Display only the matching assessment
+                dgvAssessments.ItemsSource = new List<Assessment> { foundAssessment };
+            }
+            else
+            {
+                // Display an empty table if no match found
+                dgvAssessments.ItemsSource = null;
+
+                MessageBox.Show("No assessment found with that name");
+            }
+        }
+
+        /// <summary>
+        /// Restores DataGrid to display all saved assessments
+        /// </summary>
+        private void btnShowAllAssessments_Click(object sender, RoutedEventArgs e)
+        {
+            // Clear search box
+            txtSearchAssessment.Clear();
+
+            // Restore the full assessment collection
             dgvAssessments.ItemsSource = assessmentManager.Assessments;
         }
 

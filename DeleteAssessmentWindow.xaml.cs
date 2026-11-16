@@ -48,6 +48,53 @@ namespace _30118752_AT2._3_GUI1
             dgvAssessments.ItemsSource = assessmentManager.Assessments;
         }
 
+        /// <summary>
+        /// Searches for an assessment using binary search 
+        /// </summary>
+        private void btnSearchAssessment_Click(object sender, RoutedEventArgs e)
+        {
+            // get assessment name entered by user
+            string searchName = txtSearchAssessment.Text.Trim();
+
+            // Check that the search box is not empty
+            if (string.IsNullOrWhiteSpace(searchName))
+            {
+                MessageBox.Show("Please enter an assessment name to search for ");
+                return;
+            }
+
+            // Search for the assessment using binary search
+            Assessment? foundAssessment = BinarySearch(searchName);
+
+            // Check whether an assessment was found 
+            if (foundAssessment != null)
+            {
+                // Display only the matching assessment
+                dgvAssessments.ItemsSource = new List<Assessment> { foundAssessment };
+
+                // Automatically select the matching assessment
+                dgvAssessments.SelectedItem = foundAssessment;
+            }
+            else
+            {
+                // Clear the table if no matching assessment is found 
+                dgvAssessments.ItemsSource = null;
+
+                MessageBox.Show("No assessments were found with that name");
+            }
+        }
+
+        /// <summary>
+        /// Restores datagrid to display all saved assessments 
+        /// </summary>
+        private void btnShowAllAssessments_Click(object sender, RoutedEventArgs e)
+        {
+            // Clear the search boxx 
+            txtSearchAssessment.Clear();
+
+            // Restore the complete assessment collection 
+            dgvAssessments.ItemsSource = assessmentManager.Assessments;
+        }
         private void btnDeleteAssessment_Click(object sender, RoutedEventArgs e)
         {
             // Check whether an assessment has been selected
@@ -94,6 +141,56 @@ namespace _30118752_AT2._3_GUI1
             }
         }
 
+        /// <summary>
+        /// Searches for an assessment by name using binary search 
+        /// </summary>
+        private Assessment? BinarySearch(string assessmentName)
+        {
+            // Create a temporary copy of the assessment collection
+            List<Assessment> sortedAssessments =
+                new List<Assessment>(assessmentManager.Assessments);
+
+            // Sort the temporary collection alphabetically by assessment name
+            sortedAssessments.Sort((a, b) =>
+                 string.Compare(a.AssessmentName, b.AssessmentName,
+                 StringComparison.OrdinalIgnoreCase));
+
+            // Set the starting and ending positions of the search
+            int first = 0;
+            int last = sortedAssessments.Count - 1;
+
+            // Continue searching while there are items to check
+            while (first <= last)
+            {
+                //Find the middle position of the current search range
+                int middle = first + (last - first) / 2;
+
+                // Compare the middle assessment name with the search name
+                int comparison = string.Compare(
+                    sortedAssessments[middle].AssessmentName,
+                    assessmentName,
+                    StringComparison.OrdinalIgnoreCase);
+
+                // Return the assessment if a match is found
+                if (comparison == 0)
+                {
+                    return sortedAssessments[middle];
+                }
+                // search the righgt half if the name comes after the middle name
+                else if (comparison < 0)
+                {
+                    first = middle + 1;
+                }
+                // otherwise search left half 
+                else
+                {
+                    last = middle - 1;
+                }
+            }
+
+            // Return null if no matching assessment found 
+            return null;
+        }   
         /// <summary>
         /// Closes the window and returns to main menu
         /// </summary>

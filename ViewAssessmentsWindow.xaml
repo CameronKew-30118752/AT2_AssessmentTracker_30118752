@@ -73,6 +73,7 @@
     <Grid Background="#F2F4F7" Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -86,9 +87,48 @@
                    HorizontalAlignment="Center"
                    Margin="0,0,0,20"/>
         
+        <!-- Search Controls -->
+        <Grid Grid.Row="1" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Assessment Name Search Box -->
+            <TextBox x:Name="txtSearchAssessment"
+                 Grid.Column="0"
+                 Height="38"
+                 FontSize="14"
+                 VerticalContentAlignment="Center"
+                 Padding="10,0"
+                 Margin="0,0,10,0"
+                 ToolTip="Enter an Assessment Name, eg AT1"/>
+
+            <!-- Search Button -->
+            <Button x:Name="btnSearchAssessment"
+                Grid.Column="1"
+                Content="Search"
+                Width="100"
+                Height="38"
+                Margin="0,0,10,0"
+                Style="{StaticResource RoundedBlueButton}"
+                Click="btnSearchAssessment_Click"/>
+
+            <!-- Show All Assessments Button -->
+            <Button x:Name="btnShowAllAssessments"
+                Grid.Column="2"
+                Content="Show All"
+                Width="100"
+                Height="38"
+                Style="{StaticResource RoundedBlueButton}"
+                Click="btnShowAllAssessments_Click"/>
+        </Grid>
+
+
         <!-- Table Containing Assessment Records -->
         <DataGrid x:Name="dgvAssessments"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserAddRows="False"
@@ -118,7 +158,7 @@
         
         <!-- Return to Main Menu -->
         <Button x:Name="btnReturnToMenu"
-                Grid.Row="2"
+                Grid.Row="3"
                 Content="Return to Menu"
                 Width="180"
                 Height="45"

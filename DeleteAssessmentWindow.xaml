@@ -74,6 +74,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -96,8 +97,46 @@
                    TextAlignment="Center"
                    Margin="0,0,0,18"/>
         
+        <!-- Search Controls -->
+        <Grid Grid.Row="2" Margin="15,0,15,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Assessment Name Search Box -->
+            <TextBox x:Name="txtSearchAssessment"
+                     Grid.Column="0"
+                     Height="38"
+                     FontSize="14"
+                     VerticalContentAlignment="Center"
+                     Padding="10,0"
+                     Margin="0,0,10,0"
+                     ToolTip="Enter an assessment name eg AT1"/>
+            
+            <!-- Search Button -->
+            <Button x:Name="btnSearchAssessment"
+                    Grid.Column="1"
+                    Content="Search"
+                    Width="100"
+                    Height="38"
+                    Margin="0,0,10,0"
+                    Style="{StaticResource RoundedBlueButton}"
+                    Click="btnSearchAssessment_Click"/>
+            
+            <!-- Show All Button -->
+            <Button x:Name="btnShowAllAssessments"
+                    Grid.Column="2"
+                    Content="Show All"
+                    Width="100"
+                    Height="38"
+                    Style="{StaticResource RoundedBlueButton}"
+                    Click="btnShowAllAssessments_Click"/>
+        </Grid>
+            
         <!-- Assessment Table Card -->
-        <Border Grid.Row="2"
+        <Border Grid.Row="3"
                 Background="White"
                 CornerRadius="14"
                 Padding="18"
@@ -133,14 +172,14 @@
                                         Width="1.3*"/>
 
                     <DataGridTextColumn Header="Due Date"
-                                        Binding="{Binding DueDate, StringFormat={}{0:dd-MM-yyy}}"
+                                        Binding="{Binding DueDate, StringFormat={}{0:dd-MM-yyyy}}"
                                         Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
         
         <!-- Action Buttons -->
-        <StackPanel Grid.Row="3"
+        <StackPanel Grid.Row="4"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="0,18,0,5">
