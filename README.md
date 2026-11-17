@@ -36,3 +36,6 @@ Cameron Kew
 
 ## Pull Request Example
 This change was made to show the pull request process. 
+
+## Remote Change Example 
+This section was added directly on GitHub to demonstrate a remote repository change. 
