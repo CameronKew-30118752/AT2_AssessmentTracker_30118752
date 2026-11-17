@@ -34,6 +34,5 @@ The application used a '|' character to separate assessment information within t
 Cameron Kew
 30118752
 
-## Remote Change 
-Remote change made directly on GitHub for AT2.3 VCS testing
-Adding another remote change after mistakes were made in original
+## Pull Request Example
+This change was made to show the pull request process. 
